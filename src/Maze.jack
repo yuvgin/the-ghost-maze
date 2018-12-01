@@ -1,0 +1,14 @@
+/** Draws a maze object on the screen **/
+class Maze {
+
+constructor Maze new() {
+do drawMaze();
+return this;
+}
+
+method void drawMaze() {
+do Screen.setColor(true);
+do Screen.drawRectangle(0, 0, 256, 512);
+return;
+}
+}
