@@ -4,7 +4,10 @@ field int y;
 
 constructor Maze new(){
 do Screen.setColor(true);
-do Screen.drawRectangle(0,239,511,255);
+do Screen.drawRectangle(0,240,511,255);
+do Screen.drawRectangle(0,0,15,255);
+do Screen.drawRectangle(0,0,511,15);
+do Screen.drawRectangle(496,0,511,255);
 return this;
 }
 }

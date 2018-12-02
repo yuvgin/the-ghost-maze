@@ -1,0 +1,86 @@
+class Hero {
+	field int x,y;
+	field int moveIncrement;
+
+	constructor Hero new(){
+		let x=480;
+		let y=224;
+		let moveIncrement = 2;
+		do drawUndrawHero(x,y, true);
+		return this;
+	}
+
+	method void drawUndrawHero(int x, int y, boolean draw) {
+		if (draw) {
+			do Screen.setColor(true);
+		} else {
+			do Screen.setColor(false);
+		}
+		do Screen.drawRectangle(x, y, x+15, y+15);
+		return;
+	}
+
+	
+	method int getAddress(int row, int col) {
+		return (16384 + (32 * row) + (col / 16));
+	}
+	
+	method boolean isCollision(int x, int y, int direction) {
+		var int address;
+		var boolean collision;
+		let collision = false;
+		if (direction = 1) { // up
+			let address = getAddress((y - moveIncrement + 1), x);
+		}
+		if (direction = 2) { // down
+			let address = getAddress((y + 14 + moveIncrement), x);
+		}
+		if (direction = 3) { // left
+			let address = getAddress(y, x - moveIncrement);
+		}
+		if (direction = 4) { // right
+			let address = getAddress(y, x + 14 + moveIncrement);
+		}
+		if (Memory.peek(address) = -1) {
+			let collision = true;
+		}
+		return collision;
+	}
+   
+	method void moveUp() {
+		if (~(isCollision(x, y, 1))) {
+			do drawUndrawHero(x ,y, false);
+			let y = y - moveIncrement;
+			do drawUndrawHero(x ,y, true);
+		}
+		return;
+	}
+	
+	method void moveDown() {
+		if (~(isCollision(x, y, 2))) {
+			do drawUndrawHero(x ,y, false);
+			let y = y + moveIncrement;
+			do drawUndrawHero(x ,y, true);
+		}
+		return;
+	}
+	
+	method void moveLeft() {
+		if (~(isCollision(x, y, 3))) {
+			do drawUndrawHero(x ,y, false);
+			let x = x - moveIncrement;
+			do drawUndrawHero(x ,y, true);
+		}
+		return;
+	}
+	
+	method void moveRight() {
+		if (~(isCollision(x, y, 4))) {
+			do drawUndrawHero(x ,y, false);
+			let x = x + moveIncrement;
+			do drawUndrawHero(x ,y, true);
+		}
+		return;
+	}
+   
+}
