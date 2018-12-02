@@ -14,7 +14,7 @@ class MazeGame{
 	  if (direction = 2) { do hero.moveDown(); }
 	  if (direction = 3) { do hero.moveLeft(); }
 	  if (direction = 4) { do hero.moveRight(); }
-      do Sys.wait(5);  // delays the next movement
+      do Sys.wait(20);  // delays the next movement
       return;
    }
 
@@ -30,17 +30,21 @@ class MazeGame{
 				let key = Keyboard.keyPressed();
 				let direction = 0;
 			}
-			// TODO: fix pressing unrelated button does last direction
+			let key = Keyboard.keyPressed();
 			if (key = 81)  { let exit = true; }     // q key
 			if (key = 131) { let direction = 1; }   // up arrow
 			if (key = 133) { let direction = 2; }   // down arrow
 			if (key = 130) { let direction = 3; }   // left arrow
 			if (key = 132) { let direction = 4; }   // right arrow
 			// waits for the key to be released
+			/*
 			while (~(key = 0)) {
 				let key = Keyboard.keyPressed();
 				do moveHero();
 			}
+			*/
+			do moveHero();
+			let key = Keyboard.keyPressed();
 		} // while	
 		return;
 	}

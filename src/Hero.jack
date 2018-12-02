@@ -5,7 +5,7 @@ class Hero {
 	constructor Hero new(){
 		let x=480;
 		let y=224;
-		let moveIncrement = 2;
+		let moveIncrement = 4;
 		do drawUndrawHero(x,y, true);
 		return this;
 	}
