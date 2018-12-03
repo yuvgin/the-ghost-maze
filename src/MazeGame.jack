@@ -33,10 +33,10 @@ class MazeGame{
    
    
    method boolean isEndGame(){
-	if (hero.getX() < 135){
-	do Output.moveCursor(16,7);
-	do Output.printString("YOU");
+	if (hero.getX() < 110){
 	do Output.moveCursor(18,7);
+	do Output.printString("YOU");
+	do Output.moveCursor(20,7);
 	do Output.printString("WON!");
 	return true;
 	}else{

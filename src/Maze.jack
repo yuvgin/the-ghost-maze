@@ -38,15 +38,15 @@ do Screen.drawRectangle(352, 160, 463, 175);  //J7
 do Screen.drawRectangle(464, 128, 479, 175);  //J8
 do Screen.drawRectangle(416, 80, 431, 127);  //K1
 do Screen.drawRectangle(432, 80, 495, 95);  //K2
-do Output.moveCursor(2, 2);
+do Output.moveCursor(5, 2);
 do Output.printString("THE GHOST MAZE");
-do Output.moveCursor(6, 3);
+do Output.moveCursor(10, 3);
 do Output.printString("grab the key");
-do Output.moveCursor(7, 3);
-do Output.printString("and get out");
 do Output.moveCursor(11, 3);
+do Output.printString("and get out");
+do Output.moveCursor(14, 3);
 do Output.printString("for exit");
-do Output.moveCursor(12, 3);
+do Output.moveCursor(15, 3);
 do Output.printString("press Q");
 return this;
 }
