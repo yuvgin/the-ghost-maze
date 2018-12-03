@@ -61,25 +61,37 @@ class Hero {
 		let collision = false;
 		if (direction = 1) { // up
 			let addr1 = MazeGame.getAddress((y - moveIncrement + 1), x);
-			let addr2 = MazeGame.getAddress((y - moveIncrement + 1), x + 14);
+			let addr2 = MazeGame.getAddress((y - moveIncrement + 1), x + 15);
 		}
 		if (direction = 2) { // down
 			let addr1 = MazeGame.getAddress((y + 14 + moveIncrement), x);
-			let addr2 = MazeGame.getAddress((y + 14 + moveIncrement), x + 14);
+			let addr2 = MazeGame.getAddress((y + 14 + moveIncrement), x + 15);
 		}
 		if (direction = 3) { // left
 			let addr1 = MazeGame.getAddress(y, x - moveIncrement);
-			let addr2 = MazeGame.getAddress(y + 14, x - moveIncrement);
+			let addr2 = MazeGame.getAddress(y + 15, x - moveIncrement);
 		}
 		if (direction = 4) { // right
 			let addr1 = MazeGame.getAddress(y, x + 14 + moveIncrement);
-			let addr2 = MazeGame.getAddress(y + 14, x + 14 + moveIncrement);
+			let addr2 = MazeGame.getAddress(y + 15, x + 14 + moveIncrement);
 			
 		}
 		if ((Memory.peek(addr1) = -1) | (Memory.peek(addr2) = -1)) {
 			let collision = true;
 		}
 		return collision;
+	}
+	
+	method boolean isEndGame(){
+	if (x<135){
+	do Output.moveCursor(16,7);
+	do Output.printString("YOU");
+	do Output.moveCursor(18,7);
+	do Output.printString("WON!");
+	return true;
+	}else{
+	return false;
+	}
 	}
    
 	method void moveUp() {

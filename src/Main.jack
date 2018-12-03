@@ -1,7 +1,8 @@
 class Main {
 function void main() {
-var Maze maze;
-let maze=Maze.new();
+var MazeGame game;
+let game=MazeGame.new();
+do game.run();
 return; }
 }
 
