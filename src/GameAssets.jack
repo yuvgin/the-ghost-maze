@@ -1,0 +1,44 @@
+
+class GameAssets {
+	static int seed;
+	static int increment;
+	static int multiplier;
+	
+	function int modulo(int x, int y) {
+		var int result;
+		if((x > y) & (~(y = 0))) {
+			let result = x - (y * Math.divide(x, y));
+		} else {
+			let result = x;
+		}
+		return result;
+	}
+	
+	
+	
+	function void initSeed(int newSeed) {
+		if (newSeed < 0) {
+			let seed = 0;
+		}
+		else {
+			let seed = newSeed;
+		}
+		let multiplier = 4; 
+		let increment = 1; 
+		return;
+	}
+	
+	
+	
+	
+	function int generateRandom(int limit) {
+		var int temp;
+		var int result;
+		let temp = ((multiplier * seed) + increment);
+		let result = GameAssets.modulo(temp, limit);
+		let seed = result;
+		return result;
+	}
+	
+
+}

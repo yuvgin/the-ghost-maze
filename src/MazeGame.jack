@@ -1,11 +1,8 @@
 class MazeGame{
 	field Hero hero;
 	field int direction;
-	field Maze maze;
-	field boolean endGame;
 
 	constructor MazeGame new(){
-	    let maze = Maze.new();
 		let hero = Hero.new();
 		let direction = 0;
 		return this;
@@ -21,20 +18,18 @@ class MazeGame{
 	  if (direction = 2) { do hero.moveDown(); }
 	  if (direction = 3) { do hero.moveLeft(); }
 	  if (direction = 4) { do hero.moveRight(); }
-	  let endGame = hero.isEndGame();
       do Sys.wait(5);  // delays the next movement
       return;
    }
-	
 
 
 	method void run(){
-		var char key;
+		var Maze maze;
+		var int key;
 		var boolean exit;
+		let maze = Maze.new();
 		let exit = false;
- 
 		while (~exit) {
-		    while( ~(endGame)){
 			let key = Keyboard.keyPressed();
 			if (key = 81)  { let exit = true; }     // q key
 			if (key = 131) { let direction = 1; }   // up arrow
@@ -43,7 +38,6 @@ class MazeGame{
 			if (key = 132) { let direction = 4; }   // right arrow
 			if (key = 0) { let direction = 0; }  // no key pressed
 			do moveHero();
-			}
 		} // while	
 		return;
 	}

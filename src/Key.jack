@@ -1,0 +1,59 @@
+
+class Key {
+	field int x;
+	field int y;
+
+	constructor Key new(){
+		return this;
+	}
+	
+	/**
+	Returns an array of x and y coordinates signifying a valid location for the key
+	*/
+	/*
+	method Array chooseLocation() {
+		
+	}
+	*/
+
+	method void drawUndrawKey(int x, int y, boolean draw) {
+		var int memAddress;
+		let memAddress = MazeGame.getAddress(y, x);
+		if (draw) {
+			do Memory.poke(memAddress+0, 0);
+			do Memory.poke(memAddress+32, 0);
+			do Memory.poke(memAddress+64, 0);
+			do Memory.poke(memAddress+96, 0);
+			do Memory.poke(memAddress+128, 60);
+			do Memory.poke(memAddress+160, 126);
+			do Memory.poke(memAddress+192, 103);
+			do Memory.poke(memAddress+224, -29);
+			do Memory.poke(memAddress+256, -29);
+			do Memory.poke(memAddress+288, 26727);
+			do Memory.poke(memAddress+320, 26750);
+			do Memory.poke(memAddress+352, 60);
+			do Memory.poke(memAddress+384, 0);
+			do Memory.poke(memAddress+416, 0);
+			do Memory.poke(memAddress+448, 0);
+			do Memory.poke(memAddress+480, 0);
+		} else {
+			do Memory.poke(memAddress+0, 0);
+			do Memory.poke(memAddress+32, 0);
+			do Memory.poke(memAddress+64, 0);
+			do Memory.poke(memAddress+96, 0);
+			do Memory.poke(memAddress+128, 0);
+			do Memory.poke(memAddress+160, 0);
+			do Memory.poke(memAddress+192, 0);
+			do Memory.poke(memAddress+224, 0);
+			do Memory.poke(memAddress+256, 0);
+			do Memory.poke(memAddress+288, 0);
+			do Memory.poke(memAddress+320, 0);
+			do Memory.poke(memAddress+352, 0);
+			do Memory.poke(memAddress+384, 0);
+			do Memory.poke(memAddress+416, 0);
+			do Memory.poke(memAddress+448, 0);
+			do Memory.poke(memAddress+480, 0);
+		}
+		return;
+	}
+}
