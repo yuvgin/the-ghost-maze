@@ -1,9 +1,24 @@
 class Main {
-function void main() {
-var MazeGame game;
-let game=MazeGame.new();
-do game.run();
-return; }
+	function void main() {
+		var MazeGame game;
+		let game = MazeGame.new();
+		do game.run();
+		return;
+		/*
+		var int key;
+		var int temp;
+		do GameAssets.initSeed(0);
+		while(true) {
+			let key = Keyboard.keyPressed();
+			if (key = 131) {
+				let temp = GameAssets.generateRandom(32);
+				do Output.printInt(temp);
+				do Sys.wait(100);
+			}
+		}
+		return;
+		*/
+	}
 }
 
     

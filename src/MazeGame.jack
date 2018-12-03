@@ -5,7 +5,6 @@ class MazeGame{
 	field boolean endGame;
 
 	constructor MazeGame new(){
-	    let maze = Maze.new();
 		let hero = Hero.new();
 		let direction = 0;
 		return this;
@@ -21,18 +20,37 @@ class MazeGame{
 	  if (direction = 2) { do hero.moveDown(); }
 	  if (direction = 3) { do hero.moveLeft(); }
 	  if (direction = 4) { do hero.moveRight(); }
-	  let endGame = hero.isEndGame();
+	  let endGame = isEndGame();
       do Sys.wait(5);  // delays the next movement
       return;
    }
-	
+   
+    method void openGate(){
+       do Screen.setColor(false);
+       do Screen.drawRectangle(128, 16, 143, 47);  //left inner side frame
+       return;
+   }
+   
+   
+   method boolean isEndGame(){
+	if (hero.getX() < 135){
+	do Output.moveCursor(16,7);
+	do Output.printString("YOU");
+	do Output.moveCursor(18,7);
+	do Output.printString("WON!");
+	return true;
+	}else{
+	return false;
+	}
+	}
 
 
 	method void run(){
-		var char key;
+		var int key;
 		var boolean exit;
+		let maze = Maze.new();
+		do openGate();   //here change when depends on key!!!
 		let exit = false;
- 
 		while (~exit) {
 		    while( ~(endGame)){
 			let key = Keyboard.keyPressed();

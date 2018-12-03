@@ -48,13 +48,7 @@ do Output.moveCursor(11, 3);
 do Output.printString("for exit");
 do Output.moveCursor(12, 3);
 do Output.printString("press Q");
-do openGate();
 return this;
 }
 
-method void openGate(){
-do Screen.setColor(false);
-do Screen.drawRectangle(128, 16, 143, 47);  //left inner side frame
-return;
-}
 }
