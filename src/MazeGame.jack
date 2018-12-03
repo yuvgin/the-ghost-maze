@@ -7,6 +7,10 @@ class MazeGame{
 		let direction = 0;
 		return this;
 	}
+	
+	function int getAddress(int row, int col) {
+		return (16384 + (32 * row) + (col / 16));
+	}
 
 /** Moves the hero in the current direction. */
    method void moveHero() {
@@ -25,26 +29,14 @@ class MazeGame{
 		let exit = false;
  
 		while (~exit) {
-			// waits for a key to be pressed
-			while (key = 0) {
-				let key = Keyboard.keyPressed();
-				let direction = 0;
-			}
 			let key = Keyboard.keyPressed();
 			if (key = 81)  { let exit = true; }     // q key
 			if (key = 131) { let direction = 1; }   // up arrow
 			if (key = 133) { let direction = 2; }   // down arrow
 			if (key = 130) { let direction = 3; }   // left arrow
 			if (key = 132) { let direction = 4; }   // right arrow
-			// waits for the key to be released
-			/*
-			while (~(key = 0)) {
-				let key = Keyboard.keyPressed();
-				do moveHero();
-			}
-			*/
+			if (key = 0) { let direction = 0; }  // no key pressed
 			do moveHero();
-			let key = Keyboard.keyPressed();
 		} // while	
 		return;
 	}

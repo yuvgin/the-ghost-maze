@@ -11,37 +11,72 @@ class Hero {
 	}
 
 	method void drawUndrawHero(int x, int y, boolean draw) {
+		var int memAddress;
+		let memAddress = MazeGame.getAddress(y, x);
 		if (draw) {
-			do Screen.setColor(true);
+			do Memory.poke(memAddress+0, 2016);
+			do Memory.poke(memAddress+32, 8184);
+			do Memory.poke(memAddress+64, 16380);
+			do Memory.poke(memAddress+96, 20286);
+			do Memory.poke(memAddress+128, -31202);
+			do Memory.poke(memAddress+160, -22881);
+			do Memory.poke(memAddress+192, -31201);
+			do Memory.poke(memAddress+224, -12481);
+			do Memory.poke(memAddress+256, -1);
+			do Memory.poke(memAddress+288, -2305);
+			do Memory.poke(memAddress+320, -1537);
+			do Memory.poke(memAddress+352, -1);
+			do Memory.poke(memAddress+384, 32766);
+			do Memory.poke(memAddress+416, 32766);
+			do Memory.poke(memAddress+448, 30523);
+			do Memory.poke(memAddress+480, 9009);
 		} else {
-			do Screen.setColor(false);
+			do Memory.poke(memAddress+0, 0);
+			do Memory.poke(memAddress+32, 0);
+			do Memory.poke(memAddress+64, 0);
+			do Memory.poke(memAddress+96, 0);
+			do Memory.poke(memAddress+128, 0);
+			do Memory.poke(memAddress+160, 0);
+			do Memory.poke(memAddress+192, 0);
+			do Memory.poke(memAddress+224, 0);
+			do Memory.poke(memAddress+256, 0);
+			do Memory.poke(memAddress+288, 0);
+			do Memory.poke(memAddress+320, 0);
+			do Memory.poke(memAddress+352, 0);
+			do Memory.poke(memAddress+384, 0);
+			do Memory.poke(memAddress+416, 0);
+			do Memory.poke(memAddress+448, 0);
+			do Memory.poke(memAddress+480, 0);
 		}
-		do Screen.drawRectangle(x, y, x+15, y+15);
 		return;
 	}
 
 	
-	method int getAddress(int row, int col) {
-		return (16384 + (32 * row) + (col / 16));
-	}
+	
 	
 	method boolean isCollision(int x, int y, int direction) {
-		var int address;
+		var int addr1;
+		var int addr2;
 		var boolean collision;
 		let collision = false;
 		if (direction = 1) { // up
-			let address = getAddress((y - moveIncrement + 1), x);
+			let addr1 = MazeGame.getAddress((y - moveIncrement + 1), x);
+			let addr2 = MazeGame.getAddress((y - moveIncrement + 1), x + 14);
 		}
 		if (direction = 2) { // down
-			let address = getAddress((y + 14 + moveIncrement), x);
+			let addr1 = MazeGame.getAddress((y + 14 + moveIncrement), x);
+			let addr2 = MazeGame.getAddress((y + 14 + moveIncrement), x + 14);
 		}
 		if (direction = 3) { // left
-			let address = getAddress(y, x - moveIncrement);
+			let addr1 = MazeGame.getAddress(y, x - moveIncrement);
+			let addr2 = MazeGame.getAddress(y + 14, x - moveIncrement);
 		}
 		if (direction = 4) { // right
-			let address = getAddress(y, x + 14 + moveIncrement);
+			let addr1 = MazeGame.getAddress(y, x + 14 + moveIncrement);
+			let addr2 = MazeGame.getAddress(y + 14, x + 14 + moveIncrement);
+			
 		}
-		if (Memory.peek(address) = -1) {
+		if ((Memory.peek(addr1) = -1) | (Memory.peek(addr2) = -1)) {
 			let collision = true;
 		}
 		return collision;
