@@ -9,7 +9,7 @@ class MazeGame{
 		let direction = 0;
 		return this;
 	}
-	
+
 	function int getAddress(int row, int col) {
 		return (16384 + (32 * row) + (col / 16));
 	}
@@ -24,14 +24,14 @@ class MazeGame{
       do Sys.wait(5);  // delays the next movement
       return;
    }
-   
+
     method void openGate(){
        do Screen.setColor(false);
        do Screen.drawRectangle(128, 16, 143, 47);  //left inner side frame
        return;
    }
-   
-   
+
+
    method boolean isEndGame(){
 	if (hero.getX() < 110){
 	do Output.moveCursor(18,7);
@@ -47,22 +47,28 @@ class MazeGame{
 
 	method void run(){
 		var int key;
+		let key1 = Key.new();
 		var boolean exit;
 		let maze = Maze.new();
 		do openGate();   //here change when depends on key!!!
 		let exit = false;
 		while (~exit) {
-		    while( ~(endGame)){
-			let key = Keyboard.keyPressed();
-			if (key = 81)  { let exit = true; }     // q key
-			if (key = 131) { let direction = 1; }   // up arrow
-			if (key = 133) { let direction = 2; }   // down arrow
-			if (key = 130) { let direction = 3; }   // left arrow
-			if (key = 132) { let direction = 4; }   // right arrow
-			if (key = 0) { let direction = 0; }  // no key pressed
-			do moveHero();
-			}
-		} // while	
+		    while( ~(endGame)) {
+						let key = Keyboard.keyPressed();
+							if (key = 81)  { let exit = true; }     // q key
+							if (key = 131) { let direction = 1; }   // up arrow
+							if (key = 133) { let direction = 2; }   // down arrow
+							if (key = 130) { let direction = 3; }   // left arrow
+							if (key = 132) { let direction = 4; }   // right arrow
+							if (key = 0) { let direction = 0; }  // no key pressed
+							do moveHero();
+							let heroX = hero.getX();
+							let heroY = hero.getY();
+							if (key1.isFound(heroX, heroY)) {
+								do openGate();
+							}
+				}
+		} // while
 		return;
 	}
 }

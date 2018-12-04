@@ -51,9 +51,9 @@ class Hero {
 		return;
 	}
 
-	
-	
-	
+
+
+
 	method boolean isCollision(int x, int y, int direction) {
 		var int addr1;
 		var int addr2;
@@ -74,19 +74,23 @@ class Hero {
 		if (direction = 4) { // right
 			let addr1 = MazeGame.getAddress(y, x + 14 + moveIncrement);
 			let addr2 = MazeGame.getAddress(y + 14, x + 14 + moveIncrement);
-			
+
 		}
 		if ((Memory.peek(addr1) = -1) | (Memory.peek(addr2) = -1)) {
 			let collision = true;
 		}
 		return collision;
 	}
-	
+
 	method int getX(){
-	return x;
+		return x;
 	}
-	
-   
+
+	method int getY() {
+		return y;
+	}
+
+
 	method void moveUp() {
 		if (~(isCollision(x, y, 1))) {
 			do drawUndrawHero(x ,y, false);
@@ -95,7 +99,7 @@ class Hero {
 		}
 		return;
 	}
-	
+
 	method void moveDown() {
 		if (~(isCollision(x, y, 2))) {
 			do drawUndrawHero(x ,y, false);
@@ -104,7 +108,7 @@ class Hero {
 		}
 		return;
 	}
-	
+
 	method void moveLeft() {
 		if (~(isCollision(x, y, 3))) {
 			do drawUndrawHero(x ,y, false);
@@ -113,7 +117,7 @@ class Hero {
 		}
 		return;
 	}
-	
+
 	method void moveRight() {
 		if (~(isCollision(x, y, 4))) {
 			do drawUndrawHero(x ,y, false);
@@ -122,5 +126,5 @@ class Hero {
 		}
 		return;
 	}
-   
+
 }
