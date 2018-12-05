@@ -3,9 +3,13 @@ class MazeGame{
 	field int direction;
 	field Maze maze;
 	field boolean endGame;
+	field Villain villain1;
+	field Villain villain2;
 
 	constructor MazeGame new(){
 		let hero = Hero.new();
+		let villain1 = Villain.new();
+		let villain2 = Villain.new();
 		let direction = 0;
 		return this;
 	}
@@ -47,6 +51,8 @@ class MazeGame{
 
 	method void run(){
 		var int key;
+		var int heroX;
+		var int heroY;
 		let key1 = Key.new();
 		var boolean exit;
 		let maze = Maze.new();

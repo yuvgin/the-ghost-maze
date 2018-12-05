@@ -1,0 +1,125 @@
+class Villain {
+	field int x1;
+	field int y1;
+	field Array location;
+	field int moveIncrement;
+	field int currentDirection;
+
+
+	constructor Villain new() {
+		let location = GameAssets.chooseLocation();
+		let moveIncrement = 2;
+		let currentDirection = GameAssets.generateRandomRange(1, 4);
+		do drawUndrawVillain(location[0], location[1], true, currentDirection);
+		return this;
+	}
+
+
+	method void drawUndrawVillain(int x, int y, boolean draw, int direction) {
+		var int memAddress;
+		let x1 = x;
+		let y1 = y;
+		let memAddress = GameAssets.getAddress(y, x);
+		if (draw) {
+
+				do Memory.poke(memAddress + 0, -4081);
+				do Memory.poke(memAddress + 32, 28686);
+				do Memory.poke(memAddress + 64, 16376);
+				do Memory.poke(memAddress + 96, 15288);
+				do Memory.poke(memAddress + 128, 13208);
+				do Memory.poke(memAddress + 160, 16376);
+				do Memory.poke(memAddress + 192, 16376);
+				do Memory.poke(memAddress + 224, 8176);
+				do Memory.poke(memAddress + 256, 2976);
+				do Memory.poke(memAddress + 288, 2720);
+				do Memory.poke(memAddress + 320, 4064);
+				do Memory.poke(memAddress + 352, 3168);
+				do Memory.poke(memAddress + 384, 3168);
+				do Memory.poke(memAddress + 416, 3168);
+				do Memory.poke(memAddress + 448, 32766);
+				do Memory.poke(memAddress + 480, -16381);
+		} else {
+			do Memory.poke(memAddress+0, 0);
+			do Memory.poke(memAddress+32, 0);
+			do Memory.poke(memAddress+64, 0);
+			do Memory.poke(memAddress+96, 0);
+			do Memory.poke(memAddress+128, 0);
+			do Memory.poke(memAddress+160, 0);
+			do Memory.poke(memAddress+192, 0);
+			do Memory.poke(memAddress+224, 0);
+			do Memory.poke(memAddress+256, 0);
+			do Memory.poke(memAddress+288, 0);
+			do Memory.poke(memAddress+320, 0);
+			do Memory.poke(memAddress+352, 0);
+			do Memory.poke(memAddress+384, 0);
+			do Memory.poke(memAddress+416, 0);
+			do Memory.poke(memAddress+448, 0);
+			do Memory.poke(memAddress+480, 0);
+		}
+		return;
+	}
+
+
+	method int getX(){
+	return x1;
+	}
+
+
+	method int getY(){
+	return y1;
+	}
+
+
+	method void moveUp() {
+			do drawUndrawVillain(x1 ,y1, false, 0);
+			let y1 = y1 - moveIncrement;
+			do drawUndrawVillain(x1 ,y1, true, 1);
+		return;
+	}
+
+
+	method void moveDown() {
+			do drawUndrawVillain(x1 ,y1, false, 0);
+			let y1 = y1 + moveIncrement;
+			do drawUndrawVillain(x1 ,y1, true, 2);
+		return;
+	}
+
+
+	method void moveLeft() {
+			do drawUndrawVillain(x1 ,y1, false, 0);
+			let x1 = x1 - moveIncrement;
+			do drawUndrawVillain(x1 ,y1, true, 3);
+
+		return;
+	}
+
+
+	method void moveRight() {
+			do drawUndrawVillain(x1 ,y1, false, 0);
+			let x1 = x1 + moveIncrement;
+			do drawUndrawVillain(x1 ,y1, true, 4);
+
+		return;
+	}
+
+
+	method void moveInDirection(int direction) {
+		if (direction = 1) { do moveUp(); }
+		if (direction = 2) { do moveDown(); }
+		if (direction = 3) { do moveLeft(); }
+		if (direction = 4) { do moveRight(); }
+		do Sys.wait(5);  // delays the next movement
+		return;
+	}
+
+
+	method void moveVillain(int keyX, int keyY) {
+		if (((GameAssets.isCollision(x1, y1, currentDirection, moveIncrement))) & (~avoidKey(keyX, keyY, currentDirection))) {
+			let currentDirection = GameAssets.generateRandomRange(1, 4);
+			do moveInDirection(currentDirection);
+		}
+		else { let currentDirection = GameAssets.generateRandomRange(1, 4); }
+		return;
+	}
+}
