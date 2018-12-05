@@ -124,4 +124,20 @@ class MazeGame {
 		do villain2.resetKill();
 		return;
 	}
+
+
+	/**
+	A dispose method for garbage collection and deallocation of used memory.
+	*/
+	method void dispose(){
+		do you.dispose();
+		do won.dispose();
+		do key1.dispose();
+		do maze.dispose();
+		do hero.dispose();
+		do villain1.dispose();
+		do villain2.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
 }

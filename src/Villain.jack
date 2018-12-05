@@ -18,7 +18,7 @@ class Villain {
 		do drawUndrawVillain(location[0], location[1], true, currentDirection);
 		return this;
 	}
-
+	
 	/**
 	Draws or undraws the villain based on boolean value, facing the given direction.
 	*/
@@ -46,7 +46,7 @@ class Villain {
 				do Memory.poke(memAddress + 448, 32766);
 				do Memory.poke(memAddress + 480, -16381);
 			}
-
+			
 			if (direction = 2) {
 				do Memory.poke(memAddress + 0, -4081);
 				do Memory.poke(memAddress + 32, 28686);
@@ -65,7 +65,7 @@ class Villain {
 				do Memory.poke(memAddress + 448, 32766);
 				do Memory.poke(memAddress + 480, -16381);
 			}
-
+			
 			if (direction = 3) {
 				do Memory.poke(memAddress + 0, -4081);
 				do Memory.poke(memAddress + 32, 28686);
@@ -84,7 +84,7 @@ class Villain {
 				do Memory.poke(memAddress + 448, 32766);
 				do Memory.poke(memAddress + 480, -16381);
 			}
-
+			
 			if (direction = 4) {
 				do Memory.poke(memAddress + 0, -4081);
 				do Memory.poke(memAddress + 32, 28686);
@@ -103,7 +103,7 @@ class Villain {
 				do Memory.poke(memAddress + 448, 32766);
 				do Memory.poke(memAddress + 480, -16381);
 			}
-
+			
 		} else {
 			do Memory.poke(memAddress+0, 0);
 			do Memory.poke(memAddress+32, 0);
@@ -124,22 +124,22 @@ class Villain {
 		}
 		return;
 	}
-
-
+	
+	
 	/**
 	Retrieves the X coordinate of villain
 	*/
 	method int getX(){
 	return x1;
 	}
-
+	
 	/**
 	Retrieves the Y coordinate of villain
 	*/
 	method int getY(){
 	return y1;
 	}
-
+	
 	/**
 	Moves the villain up by the amount of pixels set by the move increment.
 	*/
@@ -149,7 +149,7 @@ class Villain {
 			do drawUndrawVillain(x1 ,y1, true, 1);
 		return;
 	}
-
+	
 	/**
 	Moves the villain down by the amount of pixels set by the move increment.
 	*/
@@ -159,7 +159,7 @@ class Villain {
 			do drawUndrawVillain(x1 ,y1, true, 2);
 		return;
 	}
-
+	
 	/**
 	Moves the villain left by the amount of pixels set by the move increment.
 	*/
@@ -167,10 +167,10 @@ class Villain {
 			do drawUndrawVillain(x1 ,y1, false, 0);
 			let x1 = x1 - moveIncrement;
 			do drawUndrawVillain(x1 ,y1, true, 3);
-
+		
 		return;
 	}
-
+	
 	/**
 	Moves the villain right by the amount of pixels set by the move increment.
 	*/
@@ -178,10 +178,10 @@ class Villain {
 			do drawUndrawVillain(x1 ,y1, false, 0);
 			let x1 = x1 + moveIncrement;
 			do drawUndrawVillain(x1 ,y1, true, 4);
-
+		
 		return;
 	}
-
+	
 	/**
 	Moves the villain in the specified direction, using call to the various move methods.
 	*/
@@ -193,7 +193,7 @@ class Villain {
 		do Sys.wait(5);  // delays the next movement
 		return;
 	}
-
+	
 	/**
 	This method controls the various logical elements of villain movement, choosing random locations when colliding
 	with a wall or a key, otherwise moving in the same direction.
@@ -209,8 +209,8 @@ class Villain {
 		else { let currentDirection = GameAssets.generateRandomRange(1, 4); }
 		return;
 	}
-
-
+	
+	
 	/**
 	Checks if the hero has been killed by this villain for the given x and y coordinates,
 	representing the hero's current location.
@@ -225,33 +225,33 @@ class Villain {
 			} else { return false; }
 		} else { return false; }
 	}
-
+	
 	/**
 	A helper method containing logical conditional expressions for the killedHero method
 	*/
 	method boolean killedHeroHelper(int num1, int num2) {
 		if ((num1 > (num2 - 21)) & (num1 < (num2 + 1))) {
-			return true;
-		}
+			return true; 
+		} 
 		if ((num1 < (num2 + 21)) & (num1 > (num2 - 1))) {
-			return true;
+			return true; 
 		}
 		return false;
 	}
-
+	
 	/**
 	A helper method containing logical conditional expressions for the avoidKey method
 	*/
 	method boolean avoidKeyHelper(int num1, int num2) {
 		if ((num1 > (num2 - 21)) & (num1 < (num2 + 1))) {
-			return false;
-		}
+			return false; 
+		} 
 		if ((num1 < (num2 + 21)) & (num1 > (num2 - 1))) {
-			return false;
+			return false; 
 		}
 		return true;
 	}
-
+	
 	/**
 	Checks if the key has been avoided for the given x and y coordinates,
 	representing the villains's current location.
@@ -269,7 +269,7 @@ class Villain {
 		}
 		else { return false; }
 	}
-
+	
 	/**
 	Resets the killedHero boolean to start value (false)
 	*/
@@ -277,5 +277,13 @@ class Villain {
 		let killedHero = false;
 		return;
 	}
-
+	
+	method void dispose(){
+	do location.dispose();
+	do Memory.deAlloc(this);
+	return;
+	}
+	
 }
+
+    
