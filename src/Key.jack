@@ -1,15 +1,26 @@
-
 class Key {
-	field int x;
-	field int y;
+	field int x1;
+	field int y1;
+	field Array location;
 	field boolean isFound;
-
-
+	
+	/**
+	Constructs a new key at a (pseudo)random location within the maze.
+	*/
 	constructor Key new(){
+		let location = GameAssets.chooseLocation();
+		let isFound = false;
+		do drawUndrawKey(location[0], location[1], true);
 		return this;
 	}
-
-
+	
+	
+	
+	
+	/**
+	Checks if the key has been found for the given x and y coordinates,
+	representing the hero's current location.
+	*/
 	method boolean isFound(int x, int y) {
 		if (~(isFound)) {
 			if (isFoundHelper(x, x1)) {
@@ -21,20 +32,28 @@ class Key {
 			} else { return false; }
 		} else { return false; }
 	}
-
+	
+	/**
+	A helper method containing logical conditional expressions for the isFound method
+	*/
 	method boolean isFoundHelper(int num1, int num2) {
 		if ((num1 > (num2 - 21)) & (num1 < (num2 + 1))) {
-			return true;
-		}
+			return true; 
+		} 
 		if ((num1 < (num2 + 21)) & (num1 > (num2 - 1))) {
-			return true;
+			return true; 
 		}
 		return false;
 	}
-
+	
+	/**
+	Draws or undraws the key at the given coordinates.
+	*/
 	method void drawUndrawKey(int x, int y, boolean draw) {
 		var int memAddress;
-		let memAddress = MazeGame.getAddress(y, x);
+		let memAddress = GameAssets.getAddress(y, x);
+		let x1 = x;
+		let y1 = y;
 		if (draw) {
 			do Memory.poke(memAddress+0, 0);
 			do Memory.poke(memAddress+32, 0);
@@ -71,5 +90,33 @@ class Key {
 			do Memory.poke(memAddress+480, 0);
 		}
 		return;
+	}
+	
+	/**
+	Resets the key to a new, (pseudo)random position, and sets the isFound boolean to false.
+	*/
+	method void resetKey() {
+		do drawUndrawKey(x1, y1, false);
+		let location = GameAssets.chooseLocation();
+		let isFound = false;
+		do drawUndrawKey(location[0], location[1], true);
+		return;
+	}
+	
+	/**
+	A dispose method for garbage collection and deallocation of memory.
+	*/
+	method void dispose(){
+		do location.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
+	
+	method int getX() {
+		return x1;
+	}
+	
+	method int getY() {
+		return y1;
 	}
 }

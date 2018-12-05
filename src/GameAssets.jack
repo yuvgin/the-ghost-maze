@@ -1,10 +1,90 @@
-
+/**
+A library of various tools and helper functions used by the different
+classes of the game.
+*/
 class GameAssets {
-	static int seed;
+	static int seed; // a starting seed for the PRNG
 	static int increment;
 	static int multiplier;
+	static int quot;
+	static int modu;
 	
-	function int modulo(int x, int y) {
+	
+	/**
+	This function checks if the hero has collided with a wall by performing various calculations.
+	*/
+	function boolean isCollision(int x, int y, int direction, int moveIncrement) {
+		var int addr1;
+		var int addr2;
+		var boolean collision;
+		let collision = false;
+		if (direction = 1) { // up
+			let addr1 = GameAssets.getAddress((y - moveIncrement + 1), x);
+			let addr2 = GameAssets.getAddress((y - moveIncrement + 1), x + 14);
+		}
+		if (direction = 2) { // down
+			let addr1 = GameAssets.getAddress((y + 14 + moveIncrement), x);
+			let addr2 = GameAssets.getAddress((y + 14 + moveIncrement), x + 14);
+		}
+		if (direction = 3) { // left
+			let addr1 = GameAssets.getAddress(y, x - moveIncrement);
+			let addr2 = GameAssets.getAddress(y + 14, x - moveIncrement);
+		}
+		if (direction = 4) { // right
+			let addr1 = GameAssets.getAddress(y, x + 14 + moveIncrement);
+			let addr2 = GameAssets.getAddress(y + 14, x + 14 + moveIncrement);
+			
+		}
+		if ((Memory.peek(addr1) = -1) | (Memory.peek(addr2) = -1)) {
+			let collision = true;
+		}
+		return collision;
+	}
+	
+	/**
+	Returns an array of x and y coordinates signifying a valid location
+	*/
+	function Array chooseLocation() {
+		var int x; // 9 - 30 inclusive
+		var int y; // 1-14 inclusive
+		var boolean isValid;
+		var Array result;
+		let isValid = false;
+		let result = Array.new(2);
+		while (~(isValid)) {
+			let x = GameAssets.generateRandomRange(9, 30);
+			let y = GameAssets.generateRandomRange(1, 14);
+			let isValid = GameAssets.isValidLocation((x * 16), (y * 16));
+		}
+		let result[0] = (x * 16);
+		let result[1] = (y * 16);
+		return result;
+	}
+	
+	/**
+	Checks if the given coordinates represent a valid location,
+	i.e not inside a maze wall etc.
+	*/
+	function boolean isValidLocation(int x, int y) {
+		var int address;
+		let address = GameAssets.getAddress(y, x);
+		if (Memory.peek(address) = 0) {
+			return true;
+		} else { return false; }
+	}
+	
+	/**
+	Retrieves the memory address in RAM for the given screen row and col values
+	*/
+	function int getAddress(int row, int col) {
+		return (16384 + (32 * row) + (col / 16));
+	}
+	
+	/**
+	This function performs the modulo operation: x % y
+	for the given x and y values.
+	*/
+	function int mod(int x, int y) {
 		var int result;
 		if((x > y) & (~(y = 0))) {
 			let result = x - (y * Math.divide(x, y));
@@ -14,31 +94,48 @@ class GameAssets {
 		return result;
 	}
 	
-	
-	
+	/**
+	Initializes the seed and various other values for the pseudo-random number generator.
+	*/
 	function void initSeed(int newSeed) {
-		if (newSeed < 0) {
-			let seed = 0;
+		if (newSeed < 1) {
+			let seed = 1;
 		}
 		else {
 			let seed = newSeed;
 		}
-		let multiplier = 4; 
-		let increment = 1; 
+		let multiplier = 32749; 
+		let increment = 219;
+		let quot = multiplier/increment;
+        let modu = GameAssets.mod(multiplier, increment);
 		return;
 	}
 	
+	/**
+	Generates a random integer in the full integer range.
+	*/
+	function int generateRandom() { 
+        var int temp; 
+        let temp = (increment * (GameAssets.mod(seed, quot)))-(modu * (seed / quot)); 
+        let seed = temp; 
+		if (seed < 0) { 
+           let seed = seed + multiplier; 
+        }
+        return seed;
+    } 
 	
 	
-	
-	function int generateRandom(int limit) {
-		var int temp;
-		var int result;
-		let temp = ((multiplier * seed) + increment);
-		let result = GameAssets.modulo(temp, limit);
-		let seed = result;
-		return result;
-	}
-	
-
+	/** Generates a random number for the given start and
+	stop values, inclusive.
+	*/
+	function int generateRandomRange(int start, int stop) {
+		var int range;
+		var int random;
+		let range = (multiplier / (stop - start + 1));
+		let random = (GameAssets.generateRandom() / range) + start;
+		while (random > stop) {
+          let random = (GameAssets.generateRandom() / range) + start;
+        }
+       return random;
+    }
 }

@@ -1,54 +1,85 @@
-/** Draws a maze object on the screen **/
 class Maze {
-field int y;
+	field String header;
+	field String instruction1;
+	field String instruction2;
+	field String instruction3;
+	field String instruction4;
 
-constructor Maze new(){
-do Screen.setColor(true);
-//draw frame
-do Screen.drawRectangle(128, 0, 143, 255);  //left inner side frame
-do Screen.drawRectangle(0,240,511,255);  //down side frame
-do Screen.drawRectangle(0,0,14,255);  //left out side frame
-do Screen.drawRectangle(0,0,511,15);  
-do Screen.drawRectangle(496,0,511,255);
-//draw maze
-do Screen.drawRectangle(144,48,175,63);  //A
-do Screen.drawRectangle(192, 16, 207, 79);  //B1
-do Screen.drawRectangle(208, 64, 223, 111);  //B2
-do Screen.drawRectangle(160, 96, 207, 111);  //B3
-do Screen.drawRectangle(256, 16, 271, 47);  //C
-do Screen.drawRectangle(144, 192, 159, 207);  //D
-do Screen.drawRectangle(176, 208, 191, 239);  //E
-do Screen.drawRectangle(160, 144, 175, 175);  //F1
-do Screen.drawRectangle(176, 144, 223, 159);  //F2
-do Screen.drawRectangle(208, 160, 223, 223);  //F3
-do Screen.drawRectangle(224, 176, 255, 191);  //F4
-do Screen.drawRectangle(256, 80, 271, 223);  //F5
-do Screen.drawRectangle(272, 80, 351, 95);  //F6
-do Screen.drawRectangle(304, 160, 319, 239); //G1
-do Screen.drawRectangle(320, 208, 383, 223);  //G2
-do Screen.drawRectangle(416, 208, 431, 239);  //H
-do Screen.drawRectangle(464, 208, 495, 223);  //I
-do Screen.drawRectangle(320, 32, 335, 63);  //J1
-do Screen.drawRectangle(336, 32, 383, 47);  //J2
-do Screen.drawRectangle(368, 48, 479, 63);  //J3
-do Screen.drawRectangle(384, 64, 399, 111);  //J4
-do Screen.drawRectangle(304, 112, 399, 127);  //J5
-do Screen.drawRectangle(384, 128, 399, 159);  //J6
-do Screen.drawRectangle(352, 160, 463, 175);  //J7
-do Screen.drawRectangle(464, 128, 479, 175);  //J8
-do Screen.drawRectangle(416, 80, 431, 127);  //K1
-do Screen.drawRectangle(432, 80, 495, 95);  //K2
-do Output.moveCursor(5, 2);
-do Output.printString("THE GHOST MAZE");
-do Output.moveCursor(10, 3);
-do Output.printString("grab the key");
-do Output.moveCursor(11, 3);
-do Output.printString("and get out");
-do Output.moveCursor(14, 3);
-do Output.printString("for exit");
-do Output.moveCursor(15, 3);
-do Output.printString("press Q");
-return this;
-}
-
+	/**
+	Constructs a new maze and loads instruction text on screen.
+	*/
+	constructor Maze new(){
+		let header = "THE GHOST MAZE";
+		let instruction1 = "To reset:";
+		let instruction2 = "press R";
+		let instruction3 = "To exit:";
+		let instruction4 = "press Q";
+		do drawMaze();
+	return this;
+	}
+	
+	/**
+	Draws the maze walls and outer boundaries.
+	*/
+	method void drawMaze() {
+		do Screen.setColor(true);
+		//draw frame
+		do Screen.drawRectangle(128, 0, 143, 255);  //left inner side frame
+		do Screen.drawRectangle(0,240,511,255);  //down side frame
+		do Screen.drawRectangle(0,0,14,255);  //left out side frame
+		do Screen.drawRectangle(0,0,511,15);  
+		do Screen.drawRectangle(496,0,511,255);
+		//draw maze
+		do Screen.drawRectangle(144,48,175,63);  //A
+		do Screen.drawRectangle(192, 16, 207, 79);  //B1
+		do Screen.drawRectangle(208, 64, 223, 111);  //B2
+		do Screen.drawRectangle(160, 96, 207, 111);  //B3
+		do Screen.drawRectangle(256, 16, 271, 47);  //C
+		do Screen.drawRectangle(144, 192, 159, 207);  //D
+		do Screen.drawRectangle(176, 208, 191, 239);  //E
+		do Screen.drawRectangle(160, 144, 175, 175);  //F1
+		do Screen.drawRectangle(176, 144, 223, 159);  //F2
+		do Screen.drawRectangle(208, 160, 223, 223);  //F3
+		do Screen.drawRectangle(224, 176, 255, 191);  //F4
+		do Screen.drawRectangle(256, 80, 271, 223);  //F5
+		do Screen.drawRectangle(272, 80, 351, 95);  //F6
+		do Screen.drawRectangle(304, 160, 319, 239); //G1
+		do Screen.drawRectangle(320, 208, 383, 223);  //G2
+		do Screen.drawRectangle(416, 208, 431, 239);  //H
+		do Screen.drawRectangle(464, 208, 495, 223);  //I
+		do Screen.drawRectangle(320, 32, 335, 63);  //J1
+		do Screen.drawRectangle(336, 32, 383, 47);  //J2
+		do Screen.drawRectangle(368, 48, 479, 63);  //J3
+		do Screen.drawRectangle(384, 64, 399, 111);  //J4
+		do Screen.drawRectangle(304, 112, 399, 127);  //J5
+		do Screen.drawRectangle(384, 128, 399, 159);  //J6
+		do Screen.drawRectangle(352, 160, 463, 175);  //J7
+		do Screen.drawRectangle(464, 128, 479, 175);  //J8
+		do Screen.drawRectangle(416, 80, 431, 127);  //K1
+		do Screen.drawRectangle(432, 80, 495, 95);  //K2
+		do Output.moveCursor(5, 2);
+		do Output.printString(header);
+		do Output.moveCursor(10, 3);
+		do Output.printString(instruction1);
+		do Output.moveCursor(11, 3);
+		do Output.printString(instruction2);
+		do Output.moveCursor(14, 3);
+		do Output.printString(instruction3);
+		do Output.moveCursor(15, 3);
+		do Output.printString(instruction4);
+		return;
+	}
+	
+	/**
+	A dispose method for garbage collection and deallocation of used memory.
+	*/
+	method void dispose(){
+		do header.dispose();
+		do instruction1.dispose();
+		do instruction2.dispose();
+		do instruction3.dispose();
+		do instruction4.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
 }

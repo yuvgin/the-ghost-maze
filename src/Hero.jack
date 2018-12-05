@@ -1,35 +1,102 @@
 class Hero {
 	field int x,y;
-	field int moveIncrement;
-
+	field int moveIncrement; // how much hero moves every step
+	
+	/**
+	Constructs a new hero with default position and values,
+	and draws it to the screen.
+	*/
 	constructor Hero new(){
 		let x=480;
 		let y=224;
 		let moveIncrement = 4;
-		do drawUndrawHero(x,y, true);
+		do drawUndrawHero(x, y, true, 3);
 		return this;
 	}
 
-	method void drawUndrawHero(int x, int y, boolean draw) {
+	/**
+	Draws or undraws the hero based on boolean value, facing the given direction.
+	*/
+	method void drawUndrawHero(int x, int y, boolean draw, int direction) {
 		var int memAddress;
-		let memAddress = MazeGame.getAddress(y, x);
+		let memAddress = GameAssets.getAddress(y, x);
 		if (draw) {
-			do Memory.poke(memAddress+0, 2016);
-			do Memory.poke(memAddress+32, 8184);
-			do Memory.poke(memAddress+64, 16380);
-			do Memory.poke(memAddress+96, 20286);
-			do Memory.poke(memAddress+128, -31202);
-			do Memory.poke(memAddress+160, -22881);
-			do Memory.poke(memAddress+192, -31201);
-			do Memory.poke(memAddress+224, -12481);
-			do Memory.poke(memAddress+256, -1);
-			do Memory.poke(memAddress+288, -2305);
-			do Memory.poke(memAddress+320, -1537);
-			do Memory.poke(memAddress+352, -1);
-			do Memory.poke(memAddress+384, 32766);
-			do Memory.poke(memAddress+416, 32766);
-			do Memory.poke(memAddress+448, 30523);
-			do Memory.poke(memAddress+480, 9009);
+			if (direction = 1) {
+				do Memory.poke(memAddress + 0, 4080);
+				do Memory.poke(memAddress + 32, 4606);
+				do Memory.poke(memAddress + 64, 9471);
+				do Memory.poke(memAddress + 96, 24830);
+				do Memory.poke(memAddress + 128, 29116);
+				do Memory.poke(memAddress + 160, -34);
+				do Memory.poke(memAddress + 192, -33);
+				do Memory.poke(memAddress + 224, -3649);
+				do Memory.poke(memAddress + 256, -6916);
+				do Memory.poke(memAddress + 288, -7940);
+				do Memory.poke(memAddress + 320, -3585);
+				do Memory.poke(memAddress + 352, 32767);
+				do Memory.poke(memAddress + 384, 32766);
+				do Memory.poke(memAddress + 416, 16380);
+				do Memory.poke(memAddress + 448, 8190);
+				do Memory.poke(memAddress + 480, 2035);
+			}
+			
+			if (direction = 2) {
+				do Memory.poke(memAddress + 0, -12320);
+				do Memory.poke(memAddress + 32, 32760);
+				do Memory.poke(memAddress + 64, 16380);
+				do Memory.poke(memAddress + 96, 32766);
+				do Memory.poke(memAddress + 128, -2);
+				do Memory.poke(memAddress + 160, -113);
+				do Memory.poke(memAddress + 192, 16135);
+				do Memory.poke(memAddress + 224, 16167);
+				do Memory.poke(memAddress + 256, -625);
+				do Memory.poke(memAddress + 288, -1025);
+				do Memory.poke(memAddress + 320, 31743);
+				do Memory.poke(memAddress + 352, 15758);
+				do Memory.poke(memAddress + 384, 32518);
+				do Memory.poke(memAddress + 416, -220);
+				do Memory.poke(memAddress + 448, 32648);
+				do Memory.poke(memAddress + 480, 4080);
+			}
+			
+			if (direction = 3) {
+				do Memory.poke(memAddress + 0, 2016);
+				do Memory.poke(memAddress + 32, 8184);
+				do Memory.poke(memAddress + 64, 16380);
+				do Memory.poke(memAddress + 96, 31986);
+				do Memory.poke(memAddress + 128, 30817);
+				do Memory.poke(memAddress + 160, -1691);
+				do Memory.poke(memAddress + 192, -1951);
+				do Memory.poke(memAddress + 224, -781);
+				do Memory.poke(memAddress + 256, -1);
+				do Memory.poke(memAddress + 288, -145);
+				do Memory.poke(memAddress + 320, -97);
+				do Memory.poke(memAddress + 352, -1);
+				do Memory.poke(memAddress + 384, 32766);
+				do Memory.poke(memAddress + 416, 32766);
+				do Memory.poke(memAddress + 448, -8978);
+				do Memory.poke(memAddress + 480, -29500);
+			}
+			
+			if (direction = 4) {
+				do Memory.poke(memAddress + 0, 2016);
+				do Memory.poke(memAddress + 32, 8184);
+				do Memory.poke(memAddress + 64, 16380);
+				do Memory.poke(memAddress + 96, 20286);
+				do Memory.poke(memAddress + 128, -31202);
+				do Memory.poke(memAddress + 160, -22881);
+				do Memory.poke(memAddress + 192, -31201);
+				do Memory.poke(memAddress + 224, -12481);
+				do Memory.poke(memAddress + 256, -1);
+				do Memory.poke(memAddress + 288, -2305);
+				do Memory.poke(memAddress + 320, -1537);
+				do Memory.poke(memAddress + 352, -1);
+				do Memory.poke(memAddress + 384, 32766);
+				do Memory.poke(memAddress + 416, 32766);
+				do Memory.poke(memAddress + 448, 30523);
+				do Memory.poke(memAddress + 480, 9009);
+			}
+			
 		} else {
 			do Memory.poke(memAddress+0, 0);
 			do Memory.poke(memAddress+32, 0);
@@ -51,80 +118,89 @@ class Hero {
 		return;
 	}
 
-
-
-
-	method boolean isCollision(int x, int y, int direction) {
-		var int addr1;
-		var int addr2;
-		var boolean collision;
-		let collision = false;
-		if (direction = 1) { // up
-			let addr1 = MazeGame.getAddress((y - moveIncrement + 1), x);
-			let addr2 = MazeGame.getAddress((y - moveIncrement + 1), x + 14);
-		}
-		if (direction = 2) { // down
-			let addr1 = MazeGame.getAddress((y + 14 + moveIncrement), x);
-			let addr2 = MazeGame.getAddress((y + 14 + moveIncrement), x + 14);
-		}
-		if (direction = 3) { // left
-			let addr1 = MazeGame.getAddress(y, x - moveIncrement);
-			let addr2 = MazeGame.getAddress(y + 14, x - moveIncrement);
-		}
-		if (direction = 4) { // right
-			let addr1 = MazeGame.getAddress(y, x + 14 + moveIncrement);
-			let addr2 = MazeGame.getAddress(y + 14, x + 14 + moveIncrement);
-
-		}
-		if ((Memory.peek(addr1) = -1) | (Memory.peek(addr2) = -1)) {
-			let collision = true;
-		}
-		return collision;
-	}
-
+	
+	
+	
+	/**
+	Retrieves the X coordinate of hero
+	*/
 	method int getX(){
 		return x;
 	}
-
-	method int getY() {
+	
+	/**
+	Retrieves the Y coordinate of hero
+	*/
+	method int getY(){
 		return y;
 	}
-
-
+   
+	/**
+	Moves the hero up by the amount of pixels set by the move increment.
+	*/
 	method void moveUp() {
-		if (~(isCollision(x, y, 1))) {
-			do drawUndrawHero(x ,y, false);
+		if (~(GameAssets.isCollision(x, y, 1, moveIncrement))) {
+			do drawUndrawHero(x ,y, false, 0);
 			let y = y - moveIncrement;
-			do drawUndrawHero(x ,y, true);
+			do drawUndrawHero(x ,y, true, 1);
 		}
 		return;
 	}
-
+	
+	/**
+	Moves the hero down by the amount of pixels set by the move increment.
+	*/
 	method void moveDown() {
-		if (~(isCollision(x, y, 2))) {
-			do drawUndrawHero(x ,y, false);
+		if (~(GameAssets.isCollision(x, y, 2, moveIncrement))) {
+			do drawUndrawHero(x ,y, false, 0);
 			let y = y + moveIncrement;
-			do drawUndrawHero(x ,y, true);
+			do drawUndrawHero(x ,y, true, 2);
 		}
 		return;
 	}
-
+	
+	/**
+	Moves the hero left by the amount of pixels set by the move increment.
+	*/
 	method void moveLeft() {
-		if (~(isCollision(x, y, 3))) {
-			do drawUndrawHero(x ,y, false);
+		if (~(GameAssets.isCollision(x, y, 3, moveIncrement))) {
+			do drawUndrawHero(x ,y, false, 0);
 			let x = x - moveIncrement;
-			do drawUndrawHero(x ,y, true);
+			do drawUndrawHero(x ,y, true, 3);
 		}
 		return;
 	}
 
+	/**
+	Moves the hero right by the amount of pixels set by the move increment.
+	*/
 	method void moveRight() {
-		if (~(isCollision(x, y, 4))) {
-			do drawUndrawHero(x ,y, false);
+		if (~(GameAssets.isCollision(x, y, 4, moveIncrement))) {
+			do drawUndrawHero(x ,y, false, 0);
 			let x = x + moveIncrement;
-			do drawUndrawHero(x ,y, true);
+			do drawUndrawHero(x ,y, true, 4);
 		}
 		return;
 	}
 
+	
+	/**
+	Resets the hero's position to starting position
+	*/
+	method void resetPosition() {
+		do drawUndrawHero(x, y, false, 0);
+		let x = 480;
+		let y = 224;
+		do drawUndrawHero(x, y, true, 3);
+		return;
+	}
+	
+		
+	/**
+	A dispose method for garbage collection and deallocation of used memory.
+	*/
+	method void dispose(){
+		do Memory.deAlloc(this);
+		return;
+	}
 }

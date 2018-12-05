@@ -1,23 +1,15 @@
 class Main {
+	/**
+	A main function that runs the game.
+	*/
 	function void main() {
 		var MazeGame game;
+		do GameAssets.initSeed(9); // initialize seed for pseudorandom generator
 		let game = MazeGame.new();
 		do game.run();
+		do game.dispose(); // dispose game memory
 		return;
-		/*
-		var int key;
-		var int temp;
-		do GameAssets.initSeed(0);
-		while(true) {
-			let key = Keyboard.keyPressed();
-			if (key = 131) {
-				let temp = GameAssets.generateRandom(32);
-				do Output.printInt(temp);
-				do Sys.wait(100);
-			}
-		}
-		return;
-		*/
+		
 	}
 }
 
