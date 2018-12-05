@@ -1,20 +1,33 @@
-class MazeGame{
+class MazeGame {
 	field Hero hero;
 	field int direction;
 	field Maze maze;
 	field boolean endGame;
+	field Key key1;
+	field String you;
+	field String won;
+	field boolean reset;
+	field Villain villain1;
+	field Villain villain2;
 
+	/**
+	Constructs a new maze game
+	*/
 	constructor MazeGame new(){
+		let you = "YOU";
+		let won = "WON!";
 		let hero = Hero.new();
+		let villain1 = Villain.new();
+		let villain2 = Villain.new();
 		let direction = 0;
+		let reset = false;
 		return this;
 	}
 
-	function int getAddress(int row, int col) {
-		return (16384 + (32 * row) + (col / 16));
-	}
 
-/** Moves the hero in the current direction. */
+	/**
+	Moves the hero in the current direction, by calling on various subroutines
+	*/
    method void moveHero() {
       if (direction = 1) { do hero.moveUp(); }
 	  if (direction = 2) { do hero.moveDown(); }
@@ -25,50 +38,90 @@ class MazeGame{
       return;
    }
 
-    method void openGate(){
-       do Screen.setColor(false);
+
+	/**
+	Opens or closes the maze exit gate based on boolean value
+	*/
+    method void openCloseGate(boolean open){
+       do Screen.setColor(~(open));
        do Screen.drawRectangle(128, 16, 143, 47);  //left inner side frame
        return;
    }
 
-
-   method boolean isEndGame(){
-	if (hero.getX() < 110){
-	do Output.moveCursor(18,7);
-	do Output.printString("YOU");
-	do Output.moveCursor(20,7);
-	do Output.printString("WON!");
-	return true;
-	}else{
-	return false;
+	/**
+	Checks if the game has ended based on hero's position, and displays endgame title accordingly.
+	*/
+	method boolean isEndGame() {
+		if (hero.getX() < 110) {
+			do Output.moveCursor(18,7);
+			do Output.printString(you);
+			do Output.moveCursor(20,7);
+			do Output.printString(won);
+			return true;
+		} else {
+			return false;
+		}
 	}
+
+	/**
+	Resets the game end boolean variable and end credits.
+	*/
+	method void resetEndGame() {
+		do Screen.setColor(false);
+		do Screen.drawRectangle(16, 192, 112, 230);
+		let endGame = false;
+		return;
 	}
 
-
-	method void run(){
+	/**
+	Uses several loops to run the game, allowing for game response to user key input.
+	*/
+	method void run() {
 		var int key;
-		let key1 = Key.new();
 		var boolean exit;
+		var int heroX;
+		var int heroY;
 		let maze = Maze.new();
-		do openGate();   //here change when depends on key!!!
+		let key1 = Key.new();
 		let exit = false;
 		while (~exit) {
-		    while( ~(endGame)) {
-						let key = Keyboard.keyPressed();
-							if (key = 81)  { let exit = true; }     // q key
-							if (key = 131) { let direction = 1; }   // up arrow
-							if (key = 133) { let direction = 2; }   // down arrow
-							if (key = 130) { let direction = 3; }   // left arrow
-							if (key = 132) { let direction = 4; }   // right arrow
-							if (key = 0) { let direction = 0; }  // no key pressed
-							do moveHero();
-							let heroX = hero.getX();
-							let heroY = hero.getY();
-							if (key1.isFound(heroX, heroY)) {
-								do openGate();
-							}
+		    while(~(endGame)) {
+				let key = Keyboard.keyPressed();
+				if (key = 131) { let direction = 1; }   // up arrow
+				if (key = 133) { let direction = 2; }   // down arrow
+				if (key = 130) { let direction = 3; }   // left arrow
+				if (key = 132) { let direction = 4; }   // right arrow
+				if (key = 0) { let direction = 0; }  // no key pressed
+				do moveHero();
+				if (key = 81)  { let exit = true; let endGame=true;}     // q key
+				if (key = 82)  { do reset(); }     // r key
+				let heroX = hero.getX();
+				let heroY = hero.getY();
+				if (key1.isFound(heroX, heroY)) {
+					do openCloseGate(true);
 				}
+				if ((villain1.killedHero(heroX, heroY)) | (villain2.killedHero(heroX, heroY))) {
+					do reset();
+				}
+			}
+			let key = Keyboard.keyPressed();
+			if (key = 81)  { let exit = true; let endGame=true;}     // q key
+			if (key = 82)  { do reset(); }     // r key
 		} // while
+		return;
+	}
+
+	/**
+	Resets the hero's position to start position, resets end of the game and gate, and resets the key to a new, random location.
+	*/
+	method void reset() {
+		do Sys.wait(100);
+		do hero.resetPosition();
+		do key1.resetKey();
+		do openCloseGate(false);
+		do resetEndGame();
+		do villain1.resetKill();
+		do villain2.resetKill();
 		return;
 	}
 }
