@@ -3,25 +3,32 @@ class Villain {
 	field int y1;
 	field Array location;
 	field int moveIncrement;
+	field boolean killedHero;
 	field int currentDirection;
 
-
+	/**
+	Constructs a new villain with default position and values,
+	and draws it to the screen.
+	*/
 	constructor Villain new() {
 		let location = GameAssets.chooseLocation();
+		let killedHero = false;
 		let moveIncrement = 2;
 		let currentDirection = GameAssets.generateRandomRange(1, 4);
 		do drawUndrawVillain(location[0], location[1], true, currentDirection);
 		return this;
 	}
 
-
+	/**
+	Draws or undraws the villain based on boolean value, facing the given direction.
+	*/
 	method void drawUndrawVillain(int x, int y, boolean draw, int direction) {
 		var int memAddress;
 		let x1 = x;
 		let y1 = y;
 		let memAddress = GameAssets.getAddress(y, x);
 		if (draw) {
-
+			if (direction = 1) {
 				do Memory.poke(memAddress + 0, -4081);
 				do Memory.poke(memAddress + 32, 28686);
 				do Memory.poke(memAddress + 64, 16376);
@@ -38,6 +45,65 @@ class Villain {
 				do Memory.poke(memAddress + 416, 3168);
 				do Memory.poke(memAddress + 448, 32766);
 				do Memory.poke(memAddress + 480, -16381);
+			}
+
+			if (direction = 2) {
+				do Memory.poke(memAddress + 0, -4081);
+				do Memory.poke(memAddress + 32, 28686);
+				do Memory.poke(memAddress + 64, 16376);
+				do Memory.poke(memAddress + 96, 16376);
+				do Memory.poke(memAddress + 128, 13208);
+				do Memory.poke(memAddress + 160, 15288);
+				do Memory.poke(memAddress + 192, 16376);
+				do Memory.poke(memAddress + 224, 8176);
+				do Memory.poke(memAddress + 256, 2976);
+				do Memory.poke(memAddress + 288, 2720);
+				do Memory.poke(memAddress + 320, 4064);
+				do Memory.poke(memAddress + 352, 3168);
+				do Memory.poke(memAddress + 384, 3168);
+				do Memory.poke(memAddress + 416, 3168);
+				do Memory.poke(memAddress + 448, 32766);
+				do Memory.poke(memAddress + 480, -16381);
+			}
+
+			if (direction = 3) {
+				do Memory.poke(memAddress + 0, -4081);
+				do Memory.poke(memAddress + 32, 28686);
+				do Memory.poke(memAddress + 64, 8188);
+				do Memory.poke(memAddress + 96, 8188);
+				do Memory.poke(memAddress + 128, 7372);
+				do Memory.poke(memAddress + 160, 7900);
+				do Memory.poke(memAddress + 192, 8188);
+				do Memory.poke(memAddress + 224, 4088);
+				do Memory.poke(memAddress + 256, 1488);
+				do Memory.poke(memAddress + 288, 1360);
+				do Memory.poke(memAddress + 320, 2032);
+				do Memory.poke(memAddress + 352, 1584);
+				do Memory.poke(memAddress + 384, 1584);
+				do Memory.poke(memAddress + 416, 1584);
+				do Memory.poke(memAddress + 448, 32766);
+				do Memory.poke(memAddress + 480, -16381);
+			}
+
+			if (direction = 4) {
+				do Memory.poke(memAddress + 0, -4081);
+				do Memory.poke(memAddress + 32, 28686);
+				do Memory.poke(memAddress + 64, 16376);
+				do Memory.poke(memAddress + 96, 16376);
+				do Memory.poke(memAddress + 128, 13112);
+				do Memory.poke(memAddress + 160, 15224);
+				do Memory.poke(memAddress + 192, 16376);
+				do Memory.poke(memAddress + 224, 8176);
+				do Memory.poke(memAddress + 256, 2976);
+				do Memory.poke(memAddress + 288, 2720);
+				do Memory.poke(memAddress + 320, 4064);
+				do Memory.poke(memAddress + 352, 3168);
+				do Memory.poke(memAddress + 384, 3168);
+				do Memory.poke(memAddress + 416, 3168);
+				do Memory.poke(memAddress + 448, 32766);
+				do Memory.poke(memAddress + 480, -16381);
+			}
+
 		} else {
 			do Memory.poke(memAddress+0, 0);
 			do Memory.poke(memAddress+32, 0);
@@ -60,16 +126,23 @@ class Villain {
 	}
 
 
+	/**
+	Retrieves the X coordinate of villain
+	*/
 	method int getX(){
 	return x1;
 	}
 
-
+	/**
+	Retrieves the Y coordinate of villain
+	*/
 	method int getY(){
 	return y1;
 	}
 
-
+	/**
+	Moves the villain up by the amount of pixels set by the move increment.
+	*/
 	method void moveUp() {
 			do drawUndrawVillain(x1 ,y1, false, 0);
 			let y1 = y1 - moveIncrement;
@@ -77,7 +150,9 @@ class Villain {
 		return;
 	}
 
-
+	/**
+	Moves the villain down by the amount of pixels set by the move increment.
+	*/
 	method void moveDown() {
 			do drawUndrawVillain(x1 ,y1, false, 0);
 			let y1 = y1 + moveIncrement;
@@ -85,7 +160,9 @@ class Villain {
 		return;
 	}
 
-
+	/**
+	Moves the villain left by the amount of pixels set by the move increment.
+	*/
 	method void moveLeft() {
 			do drawUndrawVillain(x1 ,y1, false, 0);
 			let x1 = x1 - moveIncrement;
@@ -94,7 +171,9 @@ class Villain {
 		return;
 	}
 
-
+	/**
+	Moves the villain right by the amount of pixels set by the move increment.
+	*/
 	method void moveRight() {
 			do drawUndrawVillain(x1 ,y1, false, 0);
 			let x1 = x1 + moveIncrement;
@@ -103,7 +182,9 @@ class Villain {
 		return;
 	}
 
-
+	/**
+	Moves the villain in the specified direction, using call to the various move methods.
+	*/
 	method void moveInDirection(int direction) {
 		if (direction = 1) { do moveUp(); }
 		if (direction = 2) { do moveDown(); }
@@ -113,13 +194,88 @@ class Villain {
 		return;
 	}
 
-
+	/**
+	This method controls the various logical elements of villain movement, choosing random locations when colliding
+	with a wall or a key, otherwise moving in the same direction.
+	*/
 	method void moveVillain(int keyX, int keyY) {
-		if (((GameAssets.isCollision(x1, y1, currentDirection, moveIncrement))) & (~avoidKey(keyX, keyY, currentDirection))) {
-			let currentDirection = GameAssets.generateRandomRange(1, 4);
-			do moveInDirection(currentDirection);
+		if ((~(GameAssets.isCollision(x1, y1, currentDirection, moveIncrement))) & (avoidKey(keyX, keyY, currentDirection))) {
+			if ((currentDirection = 3) & ((x1 - moveIncrement) < 144)) { // avoid exiting maze
+				let currentDirection = GameAssets.generateRandomRange(1, 4);
+			} else {
+				do moveInDirection(currentDirection);
+			}
 		}
 		else { let currentDirection = GameAssets.generateRandomRange(1, 4); }
 		return;
 	}
+
+
+	/**
+	Checks if the hero has been killed by this villain for the given x and y coordinates,
+	representing the hero's current location.
+	*/
+	method boolean killedHero(int x, int y) {
+		if (~(killedHero)) {
+			if (killedHeroHelper(x, x1)) {
+				if (killedHeroHelper(y, y1)) {
+					let killedHero = true;
+					return true;
+				} else { return false; }
+			} else { return false; }
+		} else { return false; }
+	}
+
+	/**
+	A helper method containing logical conditional expressions for the killedHero method
+	*/
+	method boolean killedHeroHelper(int num1, int num2) {
+		if ((num1 > (num2 - 21)) & (num1 < (num2 + 1))) {
+			return true;
+		}
+		if ((num1 < (num2 + 21)) & (num1 > (num2 - 1))) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	A helper method containing logical conditional expressions for the avoidKey method
+	*/
+	method boolean avoidKeyHelper(int num1, int num2) {
+		if ((num1 > (num2 - 21)) & (num1 < (num2 + 1))) {
+			return false;
+		}
+		if ((num1 < (num2 + 21)) & (num1 > (num2 - 1))) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	Checks if the key has been avoided for the given x and y coordinates,
+	representing the villains's current location.
+	*/
+	method boolean avoidKey(int keyX, int keyY, int direction) {
+		var int xCheck, yCheck;
+		let xCheck = x1;
+		let yCheck = y1;
+		if (direction = 1) { let yCheck = (y1 - moveIncrement); }
+		if (direction = 2) { let yCheck = (y1 + moveIncrement); }
+		if (direction = 3) { let xCheck = (xCheck - moveIncrement); }
+		if (direction = 4) { let xCheck = (xCheck + moveIncrement); }
+		if ((avoidKeyHelper(xCheck, keyX)) | (avoidKeyHelper(yCheck, keyY))) {
+			return true;
+		}
+		else { return false; }
+	}
+
+	/**
+	Resets the killedHero boolean to start value (false)
+	*/
+	method void resetKill() {
+		let killedHero = false;
+		return;
+	}
+
 }
