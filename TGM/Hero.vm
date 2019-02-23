@@ -1,0 +1,751 @@
+function Hero.new 0
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+push constant 480
+pop this 0
+push constant 224
+pop this 1
+push constant 4
+pop this 2
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 3
+call Hero.drawUndrawHero 5
+pop temp 0
+push pointer 0
+return
+function Hero.drawUndrawHero 1
+push argument 0
+pop pointer 0
+push argument 2
+push argument 1
+call GameAssets.getAddress 2
+pop local 0
+push argument 3
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 4
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push constant 0
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 4606
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 9471
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 24830
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 29116
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 34
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 33
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 3649
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 6916
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 7940
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 3585
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 32767
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 8190
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 2035
+call Memory.poke 2
+pop temp 0
+label IF_FALSE1
+push argument 4
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push constant 0
+add
+push constant 12320
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 32760
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 2
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 113
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 16135
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 16167
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 625
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 1025
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 31743
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 15758
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 32518
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 220
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 32648
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+label IF_FALSE2
+push argument 4
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push constant 0
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 31986
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 30817
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1691
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1951
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 781
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 145
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 97
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 8978
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 29500
+neg
+call Memory.poke 2
+pop temp 0
+label IF_FALSE3
+push argument 4
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push constant 0
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 20286
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 31202
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 22881
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 31201
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 12481
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2305
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 1537
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 30523
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 9009
+call Memory.poke 2
+pop temp 0
+label IF_FALSE4
+goto IF_END0
+label IF_FALSE0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Hero.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Hero.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Hero.moveUp 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+push constant 1
+push this 2
+call GameAssets.isCollision 4
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Hero.drawUndrawHero 5
+pop temp 0
+push this 1
+push this 2
+sub
+pop this 1
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 1
+call Hero.drawUndrawHero 5
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Hero.moveDown 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+push constant 2
+push this 2
+call GameAssets.isCollision 4
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Hero.drawUndrawHero 5
+pop temp 0
+push this 1
+push this 2
+add
+pop this 1
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 2
+call Hero.drawUndrawHero 5
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Hero.moveLeft 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+push constant 3
+push this 2
+call GameAssets.isCollision 4
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Hero.drawUndrawHero 5
+pop temp 0
+push this 0
+push this 2
+sub
+pop this 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 3
+call Hero.drawUndrawHero 5
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Hero.moveRight 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+push constant 4
+push this 2
+call GameAssets.isCollision 4
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Hero.drawUndrawHero 5
+pop temp 0
+push this 0
+push this 2
+add
+pop this 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 4
+call Hero.drawUndrawHero 5
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Hero.resetPosition 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Hero.drawUndrawHero 5
+pop temp 0
+push constant 480
+pop this 0
+push constant 224
+pop this 1
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 3
+call Hero.drawUndrawHero 5
+pop temp 0
+push constant 0
+return
+function Hero.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

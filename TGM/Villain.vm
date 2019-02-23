@@ -1,0 +1,985 @@
+function Villain.new 0
+push constant 6
+call Memory.alloc 1
+pop pointer 0
+call GameAssets.chooseLocation 0
+pop this 2
+push constant 0
+pop this 4
+push constant 2
+pop this 3
+push constant 1
+push constant 4
+call GameAssets.generateRandomRange 2
+pop this 5
+push pointer 0
+push constant 0
+push this 2
+add
+pop pointer 1
+push that 0
+push constant 1
+push this 2
+add
+pop pointer 1
+push that 0
+push constant 0
+not
+push this 5
+call Villain.drawUndrawVillain 5
+pop temp 0
+push pointer 0
+return
+function Villain.drawUndrawVillain 1
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push argument 2
+pop this 1
+push argument 2
+push argument 1
+call GameAssets.getAddress 2
+pop local 0
+push argument 3
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 4
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push constant 0
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 28686
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 15288
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 13208
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8176
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2976
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2720
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 4064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 16381
+neg
+call Memory.poke 2
+pop temp 0
+label IF_FALSE1
+push argument 4
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push constant 0
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 28686
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 13208
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 15288
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8176
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2976
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2720
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 4064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 16381
+neg
+call Memory.poke 2
+pop temp 0
+label IF_FALSE2
+push argument 4
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push constant 0
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 28686
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8188
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8188
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 7372
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 7900
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8188
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 4088
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 1488
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 1360
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 1584
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1584
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1584
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 16381
+neg
+call Memory.poke 2
+pop temp 0
+label IF_FALSE3
+push argument 4
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push constant 0
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 28686
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 13112
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 15224
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8176
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2976
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2720
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 4064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 3168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 16381
+neg
+call Memory.poke 2
+pop temp 0
+label IF_FALSE4
+goto IF_END0
+label IF_FALSE0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Villain.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Villain.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Villain.moveUp 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Villain.drawUndrawVillain 5
+pop temp 0
+push this 1
+push this 3
+sub
+pop this 1
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 1
+call Villain.drawUndrawVillain 5
+pop temp 0
+push constant 0
+return
+function Villain.moveDown 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Villain.drawUndrawVillain 5
+pop temp 0
+push this 1
+push this 3
+add
+pop this 1
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 2
+call Villain.drawUndrawVillain 5
+pop temp 0
+push constant 0
+return
+function Villain.moveLeft 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Villain.drawUndrawVillain 5
+pop temp 0
+push this 0
+push this 3
+sub
+pop this 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 3
+call Villain.drawUndrawVillain 5
+pop temp 0
+push constant 0
+return
+function Villain.moveRight 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+push constant 0
+call Villain.drawUndrawVillain 5
+pop temp 0
+push this 0
+push this 3
+add
+pop this 0
+push pointer 0
+push this 0
+push this 1
+push constant 0
+not
+push constant 4
+call Villain.drawUndrawVillain 5
+pop temp 0
+push constant 0
+return
+function Villain.moveInDirection 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Villain.moveUp 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Villain.moveDown 1
+pop temp 0
+label IF_FALSE1
+push argument 1
+push constant 3
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call Villain.moveLeft 1
+pop temp 0
+label IF_FALSE2
+push argument 1
+push constant 4
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call Villain.moveRight 1
+pop temp 0
+label IF_FALSE3
+push constant 5
+call Sys.wait 1
+pop temp 0
+push constant 0
+return
+function Villain.moveVillain 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+push this 5
+push this 3
+call GameAssets.isCollision 4
+not
+push pointer 0
+push argument 1
+push argument 2
+push this 5
+call Villain.avoidKey 4
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 5
+push constant 3
+eq
+push this 0
+push this 3
+sub
+push constant 144
+lt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+push constant 4
+call GameAssets.generateRandomRange 2
+pop this 5
+goto IF_END1
+label IF_FALSE1
+push pointer 0
+push this 5
+call Villain.moveInDirection 2
+pop temp 0
+label IF_END1
+goto IF_END0
+label IF_FALSE0
+push constant 1
+push constant 4
+call GameAssets.generateRandomRange 2
+pop this 5
+label IF_END0
+push constant 0
+return
+function Villain.killedHero 0
+push argument 0
+pop pointer 0
+push this 4
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push argument 1
+push this 0
+call Villain.killedHeroHelper 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+push argument 2
+push this 1
+call Villain.killedHeroHelper 3
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+not
+pop this 4
+push constant 0
+not
+return
+goto IF_END2
+label IF_FALSE2
+push constant 0
+return
+label IF_END2
+goto IF_END1
+label IF_FALSE1
+push constant 0
+return
+label IF_END1
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function Villain.killedHeroHelper 0
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+push constant 21
+sub
+gt
+push argument 1
+push argument 2
+push constant 1
+add
+lt
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push argument 1
+push argument 2
+push constant 21
+add
+lt
+push argument 1
+push argument 2
+push constant 1
+sub
+gt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+push constant 0
+return
+function Villain.avoidKeyHelper 0
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+push constant 21
+sub
+gt
+push argument 1
+push argument 2
+push constant 1
+add
+lt
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push argument 1
+push argument 2
+push constant 21
+add
+lt
+push argument 1
+push argument 2
+push constant 1
+sub
+gt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+return
+label IF_FALSE1
+push constant 0
+not
+return
+function Villain.avoidKey 2
+push argument 0
+pop pointer 0
+push this 0
+pop local 0
+push this 1
+pop local 1
+push argument 3
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+push this 3
+sub
+pop local 1
+label IF_FALSE0
+push argument 3
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+push this 3
+add
+pop local 1
+label IF_FALSE1
+push argument 3
+push constant 3
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push this 3
+sub
+pop local 0
+label IF_FALSE2
+push argument 3
+push constant 4
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push this 3
+add
+pop local 0
+label IF_FALSE3
+push pointer 0
+push local 0
+push argument 1
+call Villain.avoidKeyHelper 3
+push pointer 0
+push local 1
+push argument 2
+call Villain.avoidKeyHelper 3
+or
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push constant 0
+not
+return
+goto IF_END4
+label IF_FALSE4
+push constant 0
+return
+label IF_END4
+function Villain.resetKill 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 4
+push constant 0
+return
+function Villain.dispose 0
+push argument 0
+pop pointer 0
+push this 2
+call Array.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
