@@ -15,7 +15,7 @@ These instructions will get a playable copy of the game up and running on your l
 ### Prerequisites
 
 This game was developed for the Hack virtual computer, and as such must be executed through *VMEmulator*, which comes bundled as part of the free to download nand2tetris software suite. <br>
-The suite itself, as well as detailed usage instructions for the VMEmulator can be found at the link below.
+The suite itself, as well as detailed usage instructions for the VMEmulator can be found at the link below:
 
 https://www.nand2tetris.org/software
 
